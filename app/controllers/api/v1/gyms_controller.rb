@@ -2,7 +2,7 @@ class Api::V1::GymsController < Api::V1::ApiController
   def index
     @gyms = Gym.all 
     if @gyms.empty?
-      render json:  {messages:'Nenhuma unidade cadastrada'}, status: :not_found
+      render json:  {messages:'Nenhuma unidade cadastrada'}, status: 200
     else
       render json: @gyms, status: 200
     end

@@ -6,24 +6,26 @@
 #
 default: &default
   adapter: postgresql
-  encoding: unicode
-  username: postgres
-  password: postgres
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: db
 
 development:
   <<: *default
-  database: esperto_fit_academy_developments
+  database: espertofit_academy_development
+  host: db
+  pool: 5
+  username: postgres
+  password:
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: esperto_fit_academy_test
-
-production:
-  <<: *default
-  database: esperto_fit_academy_production
+  database: espertofit_academy_test
+  host: db
+  pool: 5
+  username: postgres
+  password:
+  timeout: 5000

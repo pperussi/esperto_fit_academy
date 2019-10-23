@@ -3,21 +3,23 @@ services:
   db:
     image: postgres
     volumes:
-      - Academy:/var/lib/postgresql/data
-
+      - espertofit_academy_data:/var/lib/postgresql/data
   web:
+    env_file:
+      - '.env'
     build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
+    volumes:
+      - .:/espertofit_academy
     ports:
-      - "4000:4000"
+      - "83:4000"
     depends_on:
       - db
-    volumes:
-       - .:/espertofit_academy
 
 volumes:
-  Academy:
+  espertofit_academy_data:
 
 networks:
   default:
     external:
-      name: EspertoFitNetwork
+      name: esperto-network

@@ -43,7 +43,7 @@ Feita em grupo para o curso Treinadev da Campus Code
         "open_hour":"09:00",
         "close_hour":"22:00",
         "working_days":"segunda à sexta",
-        "address":"Av Paulista 111",
+        "address":"Av Paulista 111"
       }
     }
 

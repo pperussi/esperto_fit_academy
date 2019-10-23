@@ -20,7 +20,6 @@ gem 'mini_racer', platforms: :ruby
 gem 'faraday'
 gem 'faraday_middleware'
 
-gem 'devise'
 gem "bootstrap_form"
 
 # Use CoffeeScript for .coffee assets and views
@@ -42,12 +41,10 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'jwt'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
-
-gem 'faraday'
-gem 'faraday_middleware'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
