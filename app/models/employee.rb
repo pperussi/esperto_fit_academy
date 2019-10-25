@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
 
-  belongs_to :gym
+  belongs_to :gym, optional: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable, :registerable,
@@ -8,7 +8,8 @@ class Employee < ApplicationRecord
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
-  validates :name, :status, :gym, :email,  presence: { message: 'deve ser preenchido!' }
+  validates :name, :status, :email,  presence: { message: 'deve ser preenchido!' }
+  validates :gym, presence: { message: 'deve ser preenchido!' }, unless: :admin?
   validates :email, uniqueness: { message: 'Email deve ser unico!' }
   validate :corporative_email_constraint
 
@@ -30,6 +31,10 @@ class Employee < ApplicationRecord
     self.gym == gym
   end
 
+  def authenticate_employee(password, user)
+    found_employee = Employee.find_for_authentication(email: user.email)
+    found_employee.valid_password?(password)
+  end
 
 
   private

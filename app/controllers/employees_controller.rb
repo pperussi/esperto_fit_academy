@@ -57,6 +57,7 @@ class EmployeesController < ApplicationController
   def unactives
     @employees = Employee.where(status: 'unactive')
   end
+  
 
   private
   def employee_params

@@ -18,14 +18,14 @@ feature 'API get client profile' do
   end
 
   scenario 'and fails' do
-    stub_request(:get, 'http://0.0.0.0:4000/api/v1/search/customer?document=123456789').
-          with(
-            headers: {
-            'Accept'=>'*/*',
-            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Content-Type'=>'application/json',
-            'User-Agent'=>'Faraday v0.15.4'
-            }).
+    stub_request(:get, "http://esperto_fit_academy-master_web_1:4000/api/v1/search/customer?document=123456789").
+         with(
+           headers: {
+       	  'Accept'=>'*/*',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'Content-Type'=>'application/json',
+       	  'User-Agent'=>'Faraday v0.15.4'
+           }).
           to_return(status: 404, body: 'Não encontrado', headers: {})
     employee = create(:employee)
     create(:client, name: 'Customer Smith', cpf: '123456789')

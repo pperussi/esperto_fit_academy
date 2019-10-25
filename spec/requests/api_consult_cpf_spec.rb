@@ -3,10 +3,11 @@ require 'rails_helper'
 describe 'API consult CPF' do
   it 'successfully' do
     # arrange
+    headers = new_header
     client = create(:client, cpf: '12312312300', status: :banished)
 
     # act
-    get "/api/v1/clients/consult_cpf/#{client.cpf}"
+    get "/api/v1/clients/consult_cpf/#{client.cpf}", :headers => headers
 
     # assert
     expect(response.status).to eq 302
@@ -17,7 +18,8 @@ describe 'API consult CPF' do
 
   it 'and CPF must exit' do
     # act
-    get '/api/v1/clients/consult_cpf/000'
+    headers = new_header
+    get '/api/v1/clients/consult_cpf/000', :headers => headers
 
     # assert
     expect(response.status).to eq 404

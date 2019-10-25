@@ -15,6 +15,10 @@ class Auth
     JWT.decode(token, 
     AUTH_SECRET, 
     true, 
-    { algorithm: ALGORITHM }).first
+    { algorithm: ALGORITHM })
+  rescue JWT::ExpiredSignature
+    [{ expired: true }]
+  rescue
+    [{ invalid: true }]
   end
 end

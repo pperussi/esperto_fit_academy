@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'api show all gyms' do
   it 'successfully' do
+    headers = new_header
+
     gym = create(:gym, name: 'Academia Paulista')
     another_gym = create(:gym, name: 'Academia Madalena')
     trainer = create(:trainer)
@@ -9,7 +11,7 @@ describe 'api show all gyms' do
     another_activity = create(:activity, name: 'Yoga', gym_id: gym.id, trainer_id: trainer.id)
     spare_activity = create(:activity, name: 'Boxe', gym_id: another_gym.id, trainer_id: trainer.id)
 
-    get "/api/v1/gyms/#{gym.id}/activities"
+    get "/api/v1/gyms/#{gym.id}/activities", :headers => headers
 
     json_activities = JSON.parse(response.body, symbolize_names: true)
 
@@ -20,7 +22,9 @@ describe 'api show all gyms' do
   end
 
   it 'fails' do
-    get '/api/v1/gyms/7858/activities'
+    headers = new_header
+    
+    get '/api/v1/gyms/7858/activities', :headers => headers
 
     json_gyms = JSON.parse(response.body, symbolize_names: true)
 

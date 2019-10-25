@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe 'api show all gym plans prices' do
   it 'successfully' do
+    headers = new_header
+
     # arrange all gyms
     gym = create(:gym)
     other_gym = create(:gym, name: 'Academia CampusCode')
@@ -12,7 +14,7 @@ describe 'api show all gym plans prices' do
     create(:price, gym_id: other_gym.id, plan_id: plan.id)
 
     # act
-    get "/api/v1/gyms/#{gym.id}/plans"
+    get "/api/v1/gyms/#{gym.id}/plans", :headers => headers
     json_prices = JSON.parse(response.body, symbolize_names: true)
 
     # assert
@@ -23,8 +25,11 @@ describe 'api show all gym plans prices' do
     expect(json_prices[:plans][1][:price]).to eq other_price.value
     expect(json_prices[:plans].count).to eq 2
   end
+  
   it 'fails' do
-    get '/api/v1/gyms/100/plans'
+    headers = new_header
+
+    get '/api/v1/gyms/100/plans', :headers => headers
 
     json_prices = JSON.parse(response.body, symbolize_names: true)
 

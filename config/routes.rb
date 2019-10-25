@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :employees, only: %i[new create show index edit update] do
     get 'change_status', on: :member
   end
+
   resources :clients, only: %i[show new create edit update index] do
     get 'ban', on: :member
     get 'suspend', on: :member
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
         post ':cpf', to: 'clients#show', on: :collection
       end
       post 'inactivate_client/:cpf', to: 'clients#inactivate'
+      post 'employee_auth', to: 'employees#employee_auth'
     end
   end
   
