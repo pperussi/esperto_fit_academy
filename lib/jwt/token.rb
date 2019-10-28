@@ -31,13 +31,17 @@ module JWT
     end
 
     def invalid?
-      !decoded?
+      !valid?
     end
 
     private
 
     def valid_token_type?
       decoded_payload['token_type'] == 'client_a2'
+    end
+
+    def valid?
+      expired? || token.length > 1
     end
   end
 end

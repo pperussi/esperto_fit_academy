@@ -29,8 +29,5 @@ class TokenAuth
 
     return if token_expiration.blank?
     return unless token_decoded.renew_token_required?
-      
-    token_expiration = 4.hours.from_now.to_i
-    response.headers['JWT-Token-Renewed'] = Auth.issue(token_expiration)
   end
 end

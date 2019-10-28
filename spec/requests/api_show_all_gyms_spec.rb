@@ -5,7 +5,7 @@ describe 'api show all gyms' do
     headers = new_header
 
     # arrange all gyms
-    gym = create(:gym)
+    gym = create(:gym, name: 'Vila Mariana')
     another_gym = create(:gym, name: 'Vila Madalena')
 
     # act
