@@ -1,12 +1,12 @@
 module ProfileApi
   def load_profile_mock 
-    stub_request(:get, "http://esperto_fit_academy-master_web_1:4000/api/v1/search/customer?document=12345678900").
+    stub_request(:get, "http://esperto_fit_academy_web_1:4000/api/v1/search/customer?document=12345678900").
          with(
            headers: {
-       	  'Accept'=>'*/*',
-       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-       	  'Content-Type'=>'application/json',
-       	  'User-Agent'=>'Faraday v0.15.4'
+           'Accept'=>'*/*',
+           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+           'Content-Type'=>'application/json',
+           'User-Agent'=>'Faraday v0.17.0'
            }).
           to_return(status: 202, body: File.read(Rails.root.join('spec', 'support', 'profile.json')),
                      headers: { 'Content-Type' => 'aplication/json' })

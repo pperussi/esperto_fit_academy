@@ -23,11 +23,11 @@ describe 'API recive request' do
 
   it 'and does not authorizes' do
     create(:gym)
-    headers = {'Accept'=>'*/*',
-    'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-    'Content-Type'=>'application/json',
-    'Token'=>'eyJhbGciOiJIUzI1NiJ9.InNlbmhhaCI.2XvmeP1zL4df23yROAFDUw9yFEtnpiWXRIDB2NRzaP8',
-    'User-Agent'=>'Faraday v0.17.0'}
+    headers = { 'Accept' => '*/*',
+                'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                'Content-Type' => 'application/json',
+                'Token' => 'eyJhbGciOiJIUzI1NiJ9.InNlbmhhaCI.2XvmeP1zL4df23yROAFDUw9yFEtnpiWXRIDB2NRzaP8',
+                'User-Agent' => 'Faraday v0.17.0' }
 
     get '/api/v1/gyms', headers: headers
 

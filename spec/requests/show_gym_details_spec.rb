@@ -5,7 +5,7 @@ describe 'show gym details ' do
     headers = new_header
     gym = create(:gym)
 
-    get "/api/v1/gyms/#{gym.id}", :headers => headers
+    get "/api/v1/gyms/#{gym.id}", headers: headers
     json_gym = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.status).to eq 200
@@ -20,7 +20,7 @@ describe 'show gym details ' do
   it 'returns an error if the gym is not found' do
     headers = new_header
     
-    get '/api/v1/gyms/1111', :headers => headers
+    get '/api/v1/gyms/1111', headers: headers
     json_gym = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.status).to eq 404

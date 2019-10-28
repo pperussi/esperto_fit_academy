@@ -1,4 +1,4 @@
 development:
-  base_url: http://esperto_fit_payments-master_web_1:6000 
+  base_url: http://esperto_fit_payments_web_1:6000 
 # production:
 #   base_url:

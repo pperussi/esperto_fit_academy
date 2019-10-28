@@ -23,6 +23,6 @@ class Client < ApplicationRecord
   private
 
   def notify_payments_api
-    Faraday.post("http://esperto_fit_payments-master_web_1:6000/api/v1/payments/ban?cpf=#{cpf}")
+    Faraday.post("http://esperto_fit_payments_web_1:6000/api/v1/payments/ban?cpf=#{cpf}")
   end
 end

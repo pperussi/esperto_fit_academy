@@ -7,7 +7,7 @@ describe 'api send registration data' do
 		client = create(:client, cpf: '12312312300')
 
 		# act
-		post "/api/v1/clients/#{client.cpf}", :headers => headers
+		post "/api/v1/clients/#{client.cpf}", headers: headers
 		json_client = JSON.parse(response.body, symbolize_names: true)
 		
 		# assert
@@ -24,7 +24,7 @@ describe 'api send registration data' do
 		client = create(:client)
 
 		# act
-		post "/api/v1/clients/00000000", :headers => headers
+		post "/api/v1/clients/00000000", headers: headers
 
 		# assert
 		expect(response.status).to eq 404

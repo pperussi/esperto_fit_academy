@@ -7,7 +7,7 @@ describe 'API recive unregistration from client site' do
     client = create(:client, cpf: '12312312300')
 
     # act
-    post "/api/v1/inactivate_client/#{client.cpf}", :headers => headers
+    post "/api/v1/inactivate_client/#{client.cpf}", headers: headers
     json_client = JSON.parse(response.body, symbolize_names: true)
 
     # assert
@@ -16,10 +16,10 @@ describe 'API recive unregistration from client site' do
   end
 
   it 'and CPF must exit' do
-    #arrange
+    # arrange
     headers = new_header
     # act
-    post '/api/v1/inactivate_client/000', :headers => headers
+    post '/api/v1/inactivate_client/000', headers: headers
 
     # assert
     expect(response.status).to eq 404
@@ -32,7 +32,7 @@ describe 'API recive unregistration from client site' do
     client = create(:client, cpf: '12312312300', status: :banished)
 
     # act
-    post "/api/v1/inactivate_client/#{client.cpf}", :headers => headers
+    post "/api/v1/inactivate_client/#{client.cpf}", headers: headers
     json_client = JSON.parse(response.body, symbolize_names: true)
 
     # assert
@@ -46,7 +46,7 @@ describe 'API recive unregistration from client site' do
     client = create(:client, cpf: '12312312300', status: :inactive)
 
     # act
-    post "/api/v1/inactivate_client/#{client.cpf}", :headers => headers
+    post "/api/v1/inactivate_client/#{client.cpf}", headers: headers
     json_client = JSON.parse(response.body, symbolize_names: true)
 
     # assert

@@ -6,7 +6,7 @@ describe 'api shoe plans' do
     plan_basic = create(:plan, name: 'Básico', minimum_permanence: 12)
     plan_plus = create(:plan, name: 'Plus', minimum_permanence: 3)
 
-    get api_v1_show_all_plans_path, :headers => headers
+    get api_v1_show_all_plans_path, headers: headers
 
     JSON.parse(response.body, symbolize_names: true)
     expect(response.status).to eq 200
@@ -18,7 +18,7 @@ describe 'api shoe plans' do
 
   it 'fails to find plans' do
     headers = new_header
-    get api_v1_plans_path, :headers => headers
+    get api_v1_plans_path, headers: headers
 
     JSON.parse(response.body, symbolize_names: true)
 
@@ -31,7 +31,7 @@ describe 'api shoe plans' do
     plan_basic = create(:plan, name: 'Básico', minimum_permanence: 12)
     plan_plus = create(:plan, name: 'Plus', minimum_permanence: 3)
 
-    get api_v1_plan_path(plan_basic.id), :headers => headers
+    get api_v1_plan_path(plan_basic.id), headers: headers
 
     JSON.parse(response.body, symbolize_names: true)
 
@@ -43,7 +43,7 @@ describe 'api shoe plans' do
 
   it 'fails to find one plan' do
     headers = new_header
-    get api_v1_plan_path(10), :headers => headers
+    get api_v1_plan_path(10), headers: headers
 
     JSON.parse(response.body, symbolize_names: true)
 

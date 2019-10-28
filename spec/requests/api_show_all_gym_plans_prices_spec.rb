@@ -14,7 +14,7 @@ describe 'api show all gym plans prices' do
     create(:price, gym_id: other_gym.id, plan_id: plan.id)
 
     # act
-    get "/api/v1/gyms/#{gym.id}/plans", :headers => headers
+    get "/api/v1/gyms/#{gym.id}/plans", headers: headers
     json_prices = JSON.parse(response.body, symbolize_names: true)
 
     # assert
@@ -29,7 +29,7 @@ describe 'api show all gym plans prices' do
   it 'fails' do
     headers = new_header
 
-    get '/api/v1/gyms/100/plans', :headers => headers
+    get '/api/v1/gyms/100/plans', headers: headers
 
     json_prices = JSON.parse(response.body, symbolize_names: true)
 

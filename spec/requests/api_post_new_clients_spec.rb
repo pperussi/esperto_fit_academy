@@ -2,14 +2,12 @@ require 'rails_helper'
 
 describe 'api post new clients' do
   it 'successfully' do
-    employee = create(:employee, admin: true)
-    headers = user_header(employee)
+    headers = new_header
     gym = create(:gym)
     plan = create(:plan)
-    params = {client: { name: 'Mario', cpf: '123', email: 'teste@espertofit.com.br', gym_id: gym.id, plan_id: plan.id } }
-    sign_in employee
-    byebug
-    post api_v1_clients_path, params: params.to_param, :headers => headers
+    params = { client: { name: 'Mario', cpf: '123', email: 'teste@espertofit.com.br', gym_id: gym.id, plan_id: plan.id } }
+
+    post api_v1_clients_path, params: params.to_json, headers: headers
     json_client = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.status).to eq 201
@@ -21,8 +19,9 @@ describe 'api post new clients' do
   it 'and all fields must be filled in' do
     headers = new_header
     gym = create(:gym)
+    params = { client: { name: 'Mario', cpf: '', email: 'teste@espertofit.com.br', gym_id: gym.id, plan_id: '' } }
 
-    post api_v1_clients_path, params: { client: { name: 'Mario', cpf: '', email: 'teste@espertofit.com.br', gym_id: gym.id, plan_id: '' } }, :headers => headers
+    post api_v1_clients_path, params: params.to_json, headers: headers
 
     json_client = JSON.parse(response.body, symbolize_names: true)
     expect(response.status).to eq 412

@@ -8,7 +8,7 @@ class Employee < ApplicationRecord
 
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
-  validates :name, :status, :email,  presence: { message: 'deve ser preenchido!' }
+  validates :name, :status, :email, presence: { message: 'deve ser preenchido!' }
   validates :gym, presence: { message: 'deve ser preenchido!' }, unless: :admin?
   validates :email, uniqueness: { message: 'Email deve ser unico!' }
   validate :corporative_email_constraint

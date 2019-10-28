@@ -6,11 +6,11 @@ describe 'api show all gyms' do
 
     # arrange all gyms
     gym = create(:gym)
-    another_gym = create(:gym)
+    another_gym = create(:gym, name: 'Vila Madalena')
 
     # act
 
-    get api_v1_gyms_path, :headers => headers
+    get api_v1_gyms_path, headers: headers
 
     json_gyms = JSON.parse(response.body, symbolize_names: true)
 
@@ -24,7 +24,7 @@ describe 'api show all gyms' do
     employee = create(:employee, gym: nil, admin: true)
     headers = user_header(employee)
 
-    get api_v1_gyms_path, :headers => headers
+    get api_v1_gyms_path, headers: headers
 
     json_gyms = JSON.parse(response.body, symbolize_names: true)
 

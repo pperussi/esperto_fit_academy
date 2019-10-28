@@ -7,7 +7,7 @@ describe 'only admin can delete gym' do
     headers = user_header(admin)
     sign_in admin
 
-    delete "/api/v1/gyms/#{gym.id}", :headers => headers
+    delete "/api/v1/gyms/#{gym.id}", headers: headers
 
     json_gym = JSON.parse(response.body, symbolize_names: true)
 
@@ -21,7 +21,7 @@ describe 'only admin can delete gym' do
     headers = user_header(employee)
     sign_in employee
 
-    delete "/api/v1/gyms/#{gym.id}", :headers => headers
+    delete "/api/v1/gyms/#{gym.id}", headers: headers
 
     json_gym = JSON.parse(response.body, symbolize_names: true)
 
