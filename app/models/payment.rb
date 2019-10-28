@@ -8,7 +8,7 @@ class Payment
   end
 
   def self.find(cpf)
-    response = PaymentsApi.client.get do |req|
+    response = PaymentsConnection.client.get do |req|
       req.url "payments/#{cpf}"
     end
     response.body[:payments].map do |payment|

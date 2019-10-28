@@ -9,7 +9,7 @@ class Profile
   end
 
   def self.find(cpf)
-    response = EspertoFitPersonal.client.get do |req|
+    response = PersonalConnection.client.get do |req|
       req.url "search/customer?document=#{cpf}"
     end
     

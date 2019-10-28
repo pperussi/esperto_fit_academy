@@ -1,8 +1,8 @@
 development:
   base_url: http://esperto_fit_personal_web_1:5000
   payment_url: http://esperto_fit_payments_web_1:6000
-# production:
-#   base_url: https://example.com.br
-# test:
-#   base_url: http://0.0.0.0:4000
-#   payment_url: http://payment.com.br
+production:
+  base_url: https://example.com.br
+test:
+  base_url: http://esperto_fit_personal_web_1:5000
+  payment_url: http://esperto_fit_payments_web_1:6000
