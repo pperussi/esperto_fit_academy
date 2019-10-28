@@ -6,7 +6,7 @@ module Api
 
       def jwt_auth_validation
         if request.headers['Token'].present?
-          TokenAuth.token_present(request.headers['Token'])
+          TokenAuth.new(request.headers['Token']).token_present
         else
           render json: { error: 'Authentication error, token is missing on header Authentication' }, status: :unauthorized
         end

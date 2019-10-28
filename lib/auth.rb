@@ -13,13 +13,14 @@ class Auth
   end
 
   def self.decode(token)
-    JWT.decode(token, 
-               AUTH_SECRET, 
-               true, 
-               algorithm: ALGORITHM)
+    jwt_token = JWT.decode(token, 
+                           AUTH_SECRET, 
+                           true, 
+                           algorithm: ALGORITHM)
+    JWT::Token.new(jwt_token)
   rescue JWT::ExpiredSignature
-    [{ expired: true }]
+    JWT::Token.new([{ expired: true }])
   rescue StandardError
-    [{ invalid: true }]
+    JWT::Token.new([{ invalid: true }])
   end
 end
