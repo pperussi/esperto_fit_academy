@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'api show all gym plans prices' do
   it 'successfully' do
-    headers = new_header
+    user = create(:employee, admin: true)
+    headers = user_header(user)
+    params = { email: user.email, password: user.password }
 
     # arrange all gyms
     gym = create(:gym)
@@ -14,7 +16,7 @@ describe 'api show all gym plans prices' do
     create(:price, gym_id: other_gym.id, plan_id: plan.id)
 
     # act
-    get "/api/v1/gyms/#{gym.id}/plans", headers: headers
+    get "/api/v1/gyms/#{gym.id}/plans", headers: headers, params: params
     json_prices = JSON.parse(response.body, symbolize_names: true)
 
     # assert
@@ -27,9 +29,11 @@ describe 'api show all gym plans prices' do
   end
   
   it 'fails' do
-    headers = new_header
+    user = create(:employee, admin: true)
+    headers = user_header(user)
+    params = { email: user.email, password: user.password }
 
-    get '/api/v1/gyms/100/plans', headers: headers
+    get '/api/v1/gyms/100/plans', headers: headers, params: params
 
     json_prices = JSON.parse(response.body, symbolize_names: true)
 

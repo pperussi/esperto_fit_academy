@@ -1,5 +1,6 @@
 class Api::V1::PlansController < Api::V1::ApiController
-
+  before_action :employee_auth
+  
   def index
     @gym = Gym.find(params[:gym_id])
     @plans = @gym.plans

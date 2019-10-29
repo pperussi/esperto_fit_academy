@@ -1,4 +1,6 @@
 class Api::V1::GymsController < Api::V1::ApiController
+  before_action :employee_auth
+
   def index
     @gyms = Gym.all 
     if @gyms.empty?

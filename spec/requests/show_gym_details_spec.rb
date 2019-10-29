@@ -2,10 +2,13 @@ require 'rails_helper'
 
 describe 'show gym details ' do
   it 'sucessfully' do
-    headers = new_header
+    user = create(:employee, admin: true)
+    headers = user_header(user)
+    params = { email: user.email, password: user.password }
+    
     gym = create(:gym)
 
-    get "/api/v1/gyms/#{gym.id}", headers: headers
+    get "/api/v1/gyms/#{gym.id}", headers: headers, params: params
     json_gym = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.status).to eq 200
@@ -18,9 +21,11 @@ describe 'show gym details ' do
   end
 
   it 'returns an error if the gym is not found' do
-    headers = new_header
+    user = create(:employee, admin: true)
+    headers = user_header(user)
+    params = { email: user.email, password: user.password }
     
-    get '/api/v1/gyms/1111', headers: headers
+    get '/api/v1/gyms/1111', headers: headers, params: params
     json_gym = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.status).to eq 404
