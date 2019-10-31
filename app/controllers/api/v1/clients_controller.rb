@@ -8,7 +8,6 @@ class Api::V1::ClientsController < Api::V1::ApiController
 
   def create
     @client = Client.new(client_params)
-    # byebug
     if @client.save
       render json: @client, status: :created
     else

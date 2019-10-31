@@ -43,4 +43,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # #LOG
+  # config.log_formatter = CustomFormatter.new
+  # config.logger = ActiveSupport::TaggedLogging.new(Logger.new("/var/log/rails_test.log", formatter: config.log_formatter))
+  # config.log_tags = [:request_id]
 end

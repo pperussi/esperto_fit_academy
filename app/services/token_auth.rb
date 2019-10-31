@@ -8,7 +8,6 @@ class TokenAuth
 
   def token_present
     if token_decoded.decoded?
-      # byebug
       renew_token
     elsif token_decoded.invalid?
       raise StandardError, 'Authentication error, invalid payload.'

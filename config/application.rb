@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require "rails"
+require_relative "../lib/custom_formatter"
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -24,6 +25,7 @@ module EspertoFitAcademy
     config.payment = config_for(:payment).symbolize_keys
 
     config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
@@ -33,5 +35,6 @@ module EspertoFitAcademy
     config.generators.system_tests = nil
     config.esperto_fit_personal = config_for(:academy).symbolize_keys
     config.esperto_fit_payment = config_for(:academy).symbolize_keys
+    
   end
 end

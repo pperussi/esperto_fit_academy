@@ -49,7 +49,7 @@ Rails.application.routes.draw do
         post ':cpf', to: 'clients#show', on: :collection
       end
       post 'inactivate_client/:cpf', to: 'clients#inactivate'
-      post 'employee_auth', to: 'employees#employee_auth'
+      post 'employee_auth', to: 'api#employee_auth'
     end
   end
   

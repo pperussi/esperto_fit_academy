@@ -20,6 +20,9 @@ class EmployeesController < ApplicationController
       flash.now[:alert] = 'Funcionario não cadastrado'
       render :new
     end
+
+    # logger.tagged("employee_created") { logger.debug "Employee created: #{@employee.name}" }
+    
   end
 
   def show
